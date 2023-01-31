@@ -1,0 +1,20 @@
+class Solution {
+public:
+
+vector <int> a;
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        
+
+        if(root==NULL)
+        return a;
+
+        if(root->left!=NULL)
+            postorderTraversal(root->left);
+        if(root->right!=NULL)
+            postorderTraversal(root->right);
+        a.push_back(root->val);
+
+        return a;
+    }
+};
