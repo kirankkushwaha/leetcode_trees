@@ -1,0 +1,87 @@
+class Solution {
+public:
+    vector<int> a;
+    vector<int> b;
+    vector<int> preorder(TreeNode *root)
+    {
+        if(root==NULL){
+            a.push_back(0);
+            return a;
+        }
+        
+        if(root!=NULL)
+        {
+           
+            a=preorder(root->left);
+            a.push_back(root->val);
+            a=preorder(root->right);
+       
+        }
+         return a;
+        
+    }
+
+    vector<int> preorder1(TreeNode *root)
+    {
+        if(root==NULL){
+             b.push_back(0);
+            return b;
+        }
+        
+        if(root!=NULL)
+        {
+            
+            b=preorder1(root->left);
+            b.push_back(root->val);
+            b=preorder1(root->right);
+        }
+    
+        return b;
+    }
+
+    bool pal(vector<int> n, vector<int> m)
+    {
+        reverse(m.begin(),m.end());
+        
+        if(m==n)
+        return true;
+        else
+        return false;
+        
+    }
+
+
+bool sys(TreeNode *p, TreeNode *q)
+{
+    if(p==NULL && q==NULL)
+    return true;
+    if(p==NULL || q==NULL)
+    return false;
+    if(p!=NULL && q!=NULL)
+    {
+        if(p->val==q->val)
+        return sys(p->left, q->right) && sys(p->right, q->left);
+        if(p->val!=q->val)
+        return false;
+    }
+    return 0;
+}
+    bool isSymmetric(TreeNode* root) {
+
+        if(root==NULL)
+        return true;
+        TreeNode *p;
+        TreeNode *q;
+
+        p=root->left;
+        q=root->right;
+        return sys(p,q);
+        return 0;
+       
+
+
+
+
+        
+    }
+};
